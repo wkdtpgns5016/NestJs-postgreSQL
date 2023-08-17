@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+    nestjs:
+        env_file:
+            - .env
+        container_name: nestjs
+        build:
+            context: ./requirements/nestjs
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        networks:
+            - app
+        tty: true
+
+networks:
+    app:
+        driver: bridge
