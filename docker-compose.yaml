@@ -1,11 +1,4 @@
 version: '3.9'
-# volumes:
-#     postgresql_data:
-#         driver: local
-#         driver_opts:
-#             type: volume
-#             o: bind
-#             device: ./requirements/postgresql/data
 
 services:
     postgresql:
@@ -19,8 +12,6 @@ services:
             - "5432"
         networks:
             - app
-        volumes:
-            - "./requirements/postgresql/data:/var/lib/postgresql/data:Z"
         tty: true
 
     nestjs:

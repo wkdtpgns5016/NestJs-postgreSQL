@@ -2,12 +2,9 @@ FROM postgres:15-alpine
 
 EXPOSE 5432
 
-USER postgres
+VOLUME /var/lib/postgresql/data
 
-RUN chmod 0700 /var/lib/postgresql/data &&\
-    initdb /var/lib/postgresql/data &&\
-    echo "host all  all    0.0.0.0/0  md5" >> /var/lib/postgresql/data/pg_hba.conf &&\
-    echo "listen_addresses='*'" >> /var/lib/postgresql/data/postgresql.conf &&\
-    pg_ctl start &&\
-    psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'main'" | grep -q 1 || psql -U postgres -c "CREATE DATABASE main" &&\
-    psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD '1234';"
+COPY /setup.sh setup.sh
+CMD [ "bash", "setup.sh" ]
+
+# CMD ["postgres", "-D", "/var/lib/postgresql/data", "-c", "listen_addresses=0.0.0.0"]
