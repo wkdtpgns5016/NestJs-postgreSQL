@@ -1,6 +1,28 @@
 version: '3.9'
+# volumes:
+#     postgresql_data:
+#         driver: local
+#         driver_opts:
+#             type: volume
+#             o: bind
+#             device: ./requirements/postgresql/data
 
 services:
+    postgresql:
+        env_file:
+            - .env
+        container_name: postgresql
+        build:
+            context: ./requirements/postgresql
+            dockerfile: Dockerfile
+        expose:
+            - "5432"
+        networks:
+            - app
+        volumes:
+            - "./requirements/postgresql/data:/var/lib/postgresql/data:Z"
+        tty: true
+
     nestjs:
         env_file:
             - .env
