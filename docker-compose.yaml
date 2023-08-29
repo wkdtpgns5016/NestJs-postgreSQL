@@ -8,8 +8,8 @@ services:
         build:
             context: ./requirements/postgresql
             dockerfile: Dockerfile
-        expose:
-            - "5432"
+        ports:
+            - "5432:5432"
         networks:
             - app
         tty: true
