@@ -27,17 +27,3 @@ su - postgres -c "$MODIFY_PASSWD_QURREY"
 ## 재구동
 su -c "pg_ctl stop" postgres
 su -c "postgres -D /var/lib/postgresql/data" postgres
-
-#exec /bin/bash
-# DB_QURREY="SELECT 1 FROM pg_database WHERE datname = main"
-# CREATE_QURREY="CREATE DATABASE main"
-
-# NEW_DB_BIN='psql -U postgres -tc $SELECT_QURREY | grep -q 1 || psql -U postgres -c $CREATE_QURREY'
-# PASSWD_BIN='psql -c "ALTER USER postgres WITH ENCRYPTED PASSWORD 1234;"'
-# POSTGRES_BIN='postgres -D /var/lib/postgresql/data -c listen_addresses=0.0.0.0'
-
-# su - postgres -c 'psql -U postgres -tc $SELECT_QURREY | grep -q 1 || psql -U postgres -c $CREATE_QURREY'
-# su -c $PASSWD_BIN postgres
-# echo "success"
-
-# su -c $POSTGRES_BIN postgres
