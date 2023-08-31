@@ -1,4 +1,6 @@
 version: '3.9'
+volumes:
+    pgdata: {}
 
 services:
     postgresql:
@@ -13,6 +15,8 @@ services:
         networks:
             - app
         tty: true
+        volumes:
+            - pgdata:/var/lib/postgresql/data
 
     nestjs:
         env_file:
@@ -26,6 +30,8 @@ services:
         networks:
             - app
         tty: true
+        depends_on:
+            - postgresql
 
 networks:
     app:
