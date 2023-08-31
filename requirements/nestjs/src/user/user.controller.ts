@@ -27,16 +27,16 @@ export class UserController {
   }
 
   @Put(':id')
-  async update (@Param('id') id: number, @Body() user: User): Promise<any> {
-    return this.usersService.update(id, user);
+  async updateUserInfo(@Param('id') id: number, @Body() user: User): Promise<any> {
+    return this.usersService.updateUserInfo(id, user);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<any> {
+  async deleteUserInfo(@Param('id') id: number): Promise<any> {
     const user = await this.usersService.readUserInfo(id);
     if (!user) {
       throw new NotFoundException('User does not exist!');
     }
-    return this.usersService.delete(id);
+    return this.usersService.deleteUserInfo(id);
   }
 }

@@ -15,20 +15,20 @@ export class UserService {
   }
 
   async readUserInfo(id: number): Promise<User> {
-    return this.userRepository.readUserInfo({ where: { id } });
+    return this.userRepository.findOne({ where: { id } });
   }
 
   async createUserInfo(user: Partial<User>): Promise<User> {
-    const newuser = this.userRepository.createUserInfo(user);
+    const newuser = this.userRepository.create(user);
     return this.userRepository.save(newuser);
   }
 
-  async update(id: number, user: Partial<User>): Promise<User> {
+  async updateUserInfo(id: number, user: Partial<User>): Promise<User> {
     await this.userRepository.update(id, user);
     return this.userRepository.findOne({ where: { id } });
   }
 
-  async delete(id: number): Promise<void> {
+  async deleteUserInfo(id: number): Promise<void> {
     await this.userRepository.delete(id);
   }
 }
