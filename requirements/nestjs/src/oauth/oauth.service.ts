@@ -1,8 +1,6 @@
 import { HttpService } from '@nestjs/axios';
-import { Catch, Injectable } from '@nestjs/common';
-import * as FormData from 'form-data'
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { catchError, firstValueFrom, lastValueFrom, map } from 'rxjs'
+import { Injectable } from '@nestjs/common';
+import { firstValueFrom } from 'rxjs'
 
 @Injectable()
 export class OauthService {
