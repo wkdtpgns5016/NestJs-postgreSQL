@@ -7,7 +7,7 @@ export class OAuth2Strategy extends PassportStrategy(Strategy, 'oauth') {
     constructor() {
         super({
             authorizationURL: '',
-            tokenURL: 'https://api.intra.42.fr/oauth/token',
+            tokenURL: '',
             clientID: '',
             clientSecret: '',
             callbackURL: '',
